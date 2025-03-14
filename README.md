@@ -4,7 +4,6 @@ This application works by intercepting VR Chats command arguments to yt-dlp.exe 
 Additionally adds error logging whenever playback fails for whatever reason to "%user%\AppData\LocalLow\VRChat\VRChat\Tools\logs"
 
 **HOW TO USE**
-```
 Step 1: You will need to go to your VR Chat installation, find "launch.exe", right click and go to properties, and under compatiblility set it to run as Administrator from now on, and click apply. For whatever reason this fix fails to function when not running as administrator.
 
 Step 2: Download the tool from this repository extract the zip file anywhere, and run VRChatYoutubeLoginFixWatcher.exe keep it running for as long as VR Chat is running from now on.
@@ -14,4 +13,3 @@ Step 3: Get this chrome based extension to export your cookie data from youtube.
 Step 4: With youtube open, use the extension and click copy, or save a cookies.txt to "%user%\AppData\LocalLow\VRChat\VRChat\Tools" (copying to clipboard will auto create the cookies.txt file for you)
 
 Step 5: Youtube videos should now work again in VR Chat. If they stop working again, you will need to grab new cookies via step 4.
-```
