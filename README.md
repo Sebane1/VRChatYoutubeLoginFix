@@ -9,7 +9,7 @@ Step 1: You will need to go to your VR Chat installation, find "launch.exe", rig
 
 Step 2: Download the tool from this repository extract the zip file anywhere, and run VRChatYoutubeLoginFixWatcher.exe keep it running for as long as VR Chat is running from now on.
 
-Step 3: Get this chrome based extension to export your cookie data from youtube. Make sure its in netscape mode and not json. https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?hl=en
+Step 3: Get this chrome based extension to export your cookie data from youtube, or an equvalent extension. Make sure its in netscape mode and not json. https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?hl=en
 
 Step 4: With youtube open, use the extension and click copy, or save a cookies.txt to "%user%\AppData\LocalLow\VRChat\VRChat\Tools" (copying to clipboard will auto create the cookies.txt file for you)
 
