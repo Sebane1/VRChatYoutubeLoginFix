@@ -12,6 +12,6 @@ Keep it running for as long as VR Chat is running from now on, otherwise the fix
 
 Step 3: Get this chrome based extension to export your cookie data from youtube, or an equvalent extension. Make sure its in netscape mode and not json. https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?hl=en
 
-Step 4: With youtube open in browser, use the extension and click copy, or save a cookies.txt to "%user%\AppData\LocalLow\VRChat\VRChat\Tools" (copying to clipboard will auto create the cookies.txt file for you)
+Step 4: With youtube open and logged in via browser, use the extension and click copy, or save a cookies.txt to "%user%\AppData\LocalLow\VRChat\VRChat\Tools" (copying to clipboard will auto create the cookies.txt file for you)
 
 Step 5: Youtube videos should now work again in VR Chat. If they stop working again, you will need to grab new cookies via step 4.
