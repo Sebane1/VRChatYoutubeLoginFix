@@ -24,8 +24,8 @@ namespace VRChatYoutubeLoginFixWatcher {
             RefreshData();
             _fileWatcher = new FileSystemWatcher(_watcherPath, "yt-dlp");
             _fileWatcher.EnableRaisingEvents = true;
-            _fileWatcher.Created += _fileWatcher_Created;
-            _fileWatcher.Changed += _fileWatcher_Created;
+            _fileWatcher.Created += _fileWatcher_Changed;
+            _fileWatcher.Changed += _fileWatcher_Changed;
         }
 
         void RefreshData() {
@@ -34,7 +34,7 @@ namespace VRChatYoutubeLoginFixWatcher {
             AggressiveCopy(_ytdlp);
         }
 
-        private void _fileWatcher_Created(object sender, FileSystemEventArgs e) {
+        private void _fileWatcher_Changed(object sender, FileSystemEventArgs e) {
             RefreshData();
         }
 
