@@ -41,17 +41,20 @@ namespace VRChatYoutubeLoginFixWatcher {
         private void AggressiveCopy(string path) {
             string output = Path.Combine(_watcherPath, Path.GetFileName(path));
             bool succeeded = false;
-            while (!succeeded) {
-                try {
-                    File.Copy(path, output, true);
-                    succeeded = true;
-                } catch {
-                    Thread.Sleep(1000);
+            if (File.Exists(path)) {
+                while (!succeeded) {
+                    try {
+                        File.Copy(path, output, true);
+                        succeeded = true;
+                    } catch {
+                        Thread.Sleep(1000);
+                    }
                 }
             }
         }
         public void SaveCookies(string cookies) {
             if (_previousCookies != cookies) {
+                Console.WriteLine("Youtube cookies saved locally for VR Chat use.");
                 File.WriteAllText(_cookiesPath, cookies);
                 _previousCookies = cookies;
             }
