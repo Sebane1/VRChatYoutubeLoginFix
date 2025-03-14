@@ -1,0 +1,14 @@
+C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\bin\Release\net8.0\yt-dlp.exe
+C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\bin\Release\net8.0\yt-dlp.deps.json
+C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\bin\Release\net8.0\yt-dlp.runtimeconfig.json
+C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\bin\Release\net8.0\yt-dlp.dll
+C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\bin\Release\net8.0\yt-dlp.pdb
+C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\obj\Release\net8.0\yt-dlp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\obj\Release\net8.0\yt-dlp.AssemblyInfoInputs.cache
+C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\obj\Release\net8.0\yt-dlp.AssemblyInfo.cs
+C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\obj\Release\net8.0\yt-dlp.csproj.CoreCompileInputs.cache
+C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\obj\Release\net8.0\yt-dlp.dll
+C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\obj\Release\net8.0\refint\yt-dlp.dll
+C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\obj\Release\net8.0\yt-dlp.pdb
+C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\obj\Release\net8.0\yt-dlp.genruntimeconfig.cache
+C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\obj\Release\net8.0\ref\yt-dlp.dll
