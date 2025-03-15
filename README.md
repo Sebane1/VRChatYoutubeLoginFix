@@ -16,7 +16,8 @@ Keep it running for as long as VR Chat is running from now on, otherwise the fix
 Get this chrome based extension to export your cookie data from youtube, or an equvalent extension. Make sure its in netscape mode and not json. https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?hl=en
 
 **Step 4:** 
-With youtube open and logged in via an incognito browser tab, use the extension and click copy, or save a cookies.txt to "%user%\AppData\LocalLow\VRChat\VRChat\Tools" (copying to clipboard will auto create the cookies.txt file for you)
+With youtube open and logged in via an incognito browser tab, use the extension and click copy, or save a cookies.txt to "%user%\AppData\LocalLow\VRChat\VRChat\Tools" (copying to clipboard will auto create the cookies.txt file for you).
+
 The official [github](https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies) of yt-dlp does warn that overdownloading on an account could lead to account suspension, so potentially use a burner account or be mindful of how many videos are played at once.
 
 **Step 5:** 
