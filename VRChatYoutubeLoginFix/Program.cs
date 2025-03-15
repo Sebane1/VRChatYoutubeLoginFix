@@ -1,30 +1,45 @@
 ﻿using System.Diagnostics;
+using static VRChatYoutubeLoginFix.Program;
 
 namespace VRChatYoutubeLoginFix {
     internal class Program {
         // This code intercepts commands meant for yt-dlp so that we can add cookie login commands to whatever VR Chat is sending.
         static void Main(string[] args) {
+            if (args.Length == 0) {
+                args = new string[] {
+                "https://youtu.be/OqjSg8gipBs?si=-EqZ5YHBlzfxQH5q"
+                };
+            }
+            // We use this for logs currently.
             Guid guid = Guid.NewGuid();
+            
+            // Set up our paths.
             string applicationPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "yt-dlp-real.exe");
             string cookiesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cookies.txt");
             string cacheDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cache");
             string logFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"logs\");
             Directory.CreateDirectory(logFolder);
             string logPath = Path.Combine(logFolder, guid.ToString() + "log.txt");
-
+            string log = "";
             // Try getting cookies from all common browsers until one works.
             // Personally haven't had anything other than raw exported cookies work on my own machine
             // but yt-dlp has browser cookie grabbing in its arguments, so maybe they can work for somebody else. 
-            if (GetVideoPath(cookiesPath, args, applicationPath, logPath, BrowserType.RawCookies)) { 
+            if (GetVideoPath(cookiesPath, args, applicationPath, ref log, BrowserType.RawCookies)) { 
                 return;
-            } else if (GetVideoPath(cookiesPath, args, applicationPath, logPath, BrowserType.Chrome)) {
+            } else if (GetVideoPath(cookiesPath, args, applicationPath, ref log, BrowserType.Chrome)) {
                 return;
-            } else if (GetVideoPath(cookiesPath, args, applicationPath, logPath, BrowserType.Firefox)) {
+            } else if (GetVideoPath(cookiesPath, args, applicationPath, ref log, BrowserType.Firefox)) {
                 return;
-            } else if (GetVideoPath(cookiesPath, args, applicationPath, logPath, BrowserType.Edge)) {
+            } else if (GetVideoPath(cookiesPath, args, applicationPath, ref log, BrowserType.Edge)) {
                 return;
-            } else if (GetVideoPath(cookiesPath, args, applicationPath, logPath, BrowserType.Brave)) {
+            } else if (GetVideoPath(cookiesPath, args, applicationPath, ref log, BrowserType.Brave)) {
                 return;
+            } else {
+                // We have failed to get any of the data we needed. Save the log to disk.
+                try { 
+                    File.WriteAllText(logPath, log);
+                } catch (Exception e) {
+                }
             }
         }
         public enum BrowserType {
@@ -36,13 +51,13 @@ namespace VRChatYoutubeLoginFix {
             Edge
         }
         private static bool GetVideoPath(string cookiesPath, string[] args,
-            string applicationPath, string logPath, BrowserType browserType) {
+            string applicationPath, ref string log, BrowserType browserType) {
             string output = "";
             string error = "";
-            string log = "";
 
             List<string> argsList = new List<string>();
 
+            log += "Attempt getting youtube login cookie using " + browserType.ToString() + "\r\n";
 
             // Add our cookies
             if (browserType == BrowserType.RawCookies) {
@@ -67,7 +82,7 @@ namespace VRChatYoutubeLoginFix {
                 argsList.Add(args[i]);
             }
 
-            // Send the command arguments to the real yt-dlp
+            // Send the command arguments to yt-dlp-real.exe
             ProcessStartInfo processStartInfo = new ProcessStartInfo();
             processStartInfo.FileName = applicationPath;
             foreach (var argument in argsList) {
@@ -86,7 +101,9 @@ namespace VRChatYoutubeLoginFix {
             } catch (Exception e) {
                 log += e.Message + "\r\n";
             }
+
             if (!string.IsNullOrEmpty(output)) {
+                // VR Chat reads the video path we grabbed from yt-dlp-real.exe from here.
                 Console.WriteLine(output);
             }
             foreach (var argument in argsList) {
@@ -94,15 +111,9 @@ namespace VRChatYoutubeLoginFix {
             }
             log += output + "\r\n";
             log += error;
+            log += "\r\n----------------------------------------------\r\n";
 
             bool hasErrors = !string.IsNullOrEmpty(error);
-            // Write any errors to log file.
-            try {
-                if (hasErrors && browserType == BrowserType.RawCookies) {
-                    File.WriteAllText(logPath, log);
-                }
-            } catch (Exception e) {
-            }
             return !hasErrors;
         }
     }
