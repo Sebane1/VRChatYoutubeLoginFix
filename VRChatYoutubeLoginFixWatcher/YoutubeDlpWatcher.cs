@@ -13,25 +13,30 @@ namespace VRChatYoutubeLoginFixWatcher {
         private string _ytdlp;
         private FileSystemWatcher _fileWatcher;
         private string _previousCookies;
+        private bool refreshingData;
 
         public YoutubeDlpWatcher() {
             _watcherPath = Path.Combine(LocalLow.GetLocalLow(), "VRChat\\VRChat\\Tools");
             _argumentInterceptor = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "yt-dlp.exe");
             _argumentInterceptorDll = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "yt-dlp.dll");
-            _cookiesPath = Path.Combine(LocalLow.GetLocalLow(), "cookies.txt");
+            _cookiesPath = Path.Combine(_watcherPath, "cookies.txt");
             _ytdlp = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "yt-dlp-real.exe");
 
             RefreshData();
-            _fileWatcher = new FileSystemWatcher(_watcherPath, "yt-dlp");
+            _fileWatcher = new FileSystemWatcher(_watcherPath, "yt-dlp.exe");
             _fileWatcher.EnableRaisingEvents = true;
             _fileWatcher.Created += _fileWatcher_Changed;
             _fileWatcher.Changed += _fileWatcher_Changed;
         }
 
         void RefreshData() {
-            AggressiveCopy(_argumentInterceptor);
-            AggressiveCopy(_argumentInterceptorDll);
-            AggressiveCopy(_ytdlp);
+            if (!refreshingData) {
+                refreshingData = true;
+                AggressiveCopy(_argumentInterceptor);
+                AggressiveCopy(_argumentInterceptorDll);
+                AggressiveCopy(_ytdlp);
+                refreshingData = false;
+            }
         }
 
         private void _fileWatcher_Changed(object sender, FileSystemEventArgs e) {
