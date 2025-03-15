@@ -1,3 +1,0 @@
-An error occurred trying to start process 'C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\bin\Debug\net8.0\yt-dlp-real.exe' with working directory 'C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\bin\Debug\net8.0'. The system cannot find the file specified.
---cookies
-C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubeBotLoginFix\bin\Debug\net8.0\cookies.txt

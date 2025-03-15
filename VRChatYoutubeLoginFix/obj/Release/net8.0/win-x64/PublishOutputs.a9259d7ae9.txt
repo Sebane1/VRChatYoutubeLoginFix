@@ -1,2 +1,0 @@
-C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubePlayerFix\bin\Debug\net8.0-windows\yt-dlp.pdb
-C:\Users\stel9\source\repos\VRChatYoutubeBotLoginFix\VRChatYoutubePlayerFix\bin\Debug\net8.0-windows\yt-dlp.exe

@@ -11,16 +11,48 @@ namespace VRChatYoutubeLoginFix {
             string logFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"logs\");
             Directory.CreateDirectory(logFolder);
             string logPath = Path.Combine(logFolder, guid.ToString() + "log.txt");
+
+            // Try getting cookies from all common browsers until one works.
+            // Personally haven't had anything other than raw exported cookies work on my own machine
+            // but yt-dlp has browser cookie grabbing in its arguments, so maybe they can work for somebody else. 
+            if (GetVideoPath(cookiesPath, args, applicationPath, logPath, BrowserType.RawCookies)) { 
+                return;
+            } else if (GetVideoPath(cookiesPath, args, applicationPath, logPath, BrowserType.Chrome)) {
+                return;
+            } else if (GetVideoPath(cookiesPath, args, applicationPath, logPath, BrowserType.Firefox)) {
+                return;
+            } else if (GetVideoPath(cookiesPath, args, applicationPath, logPath, BrowserType.Edge)) {
+                return;
+            } else if (GetVideoPath(cookiesPath, args, applicationPath, logPath, BrowserType.Brave)) {
+                return;
+            }
+        }
+        public enum BrowserType {
+            RawCookies,
+            Chrome,
+            Brave,
+            Safari,
+            Firefox,
+            Edge
+        }
+        private static bool GetVideoPath(string cookiesPath, string[] args,
+            string applicationPath, string logPath, BrowserType browserType) {
             string output = "";
             string error = "";
             string log = "";
 
             List<string> argsList = new List<string>();
 
+
             // Add our cookies
-            argsList.Add("--cookies");
-            argsList.Add(cookiesPath);
-            
+            if (browserType == BrowserType.RawCookies) {
+                argsList.Add("--cookies");
+                argsList.Add(cookiesPath);
+            } else {
+                argsList.Add("--cookies-from-browser");
+                argsList.Add(browserType.ToString().ToLower());
+            }
+
             // Filter and add the commands VR Chat wants to send.
             for (int i = 0; i < args.Length; i++) {
                 bool validatingArgs = true;
@@ -35,7 +67,7 @@ namespace VRChatYoutubeLoginFix {
                 argsList.Add(args[i]);
             }
 
-            // Sent the command arguments to the real yt-dlp
+            // Send the command arguments to the real yt-dlp
             ProcessStartInfo processStartInfo = new ProcessStartInfo();
             processStartInfo.FileName = applicationPath;
             foreach (var argument in argsList) {
@@ -63,10 +95,15 @@ namespace VRChatYoutubeLoginFix {
             log += output + "\r\n";
             log += error;
 
+            bool hasErrors = !string.IsNullOrEmpty(error);
             // Write any errors to log file.
-            if (!string.IsNullOrEmpty(error)) {
-                File.WriteAllText(logPath, log);
+            try {
+                if (hasErrors && browserType == BrowserType.RawCookies) {
+                    File.WriteAllText(logPath, log);
+                }
+            } catch (Exception e) {
             }
+            return !hasErrors;
         }
     }
 }
