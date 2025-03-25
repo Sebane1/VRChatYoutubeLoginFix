@@ -1,4 +1,4 @@
-A last resort solution for when youtube demands you login to your account to watch content in VR Chat.
+A last resort solution for when youtube demands you login to your account to watch content in VR Chat, and additionally adds some more robust solutions for mitigating youtube restricting access.
 This application works by intercepting VR Chats command arguments to yt-dlp.exe and adding cookie login arguments to allow youtube playback to function again.
 
 Additionally adds error logging whenever playback fails for whatever reason to "%user%\AppData\LocalLow\VRChat\VRChat\Tools\logs"
