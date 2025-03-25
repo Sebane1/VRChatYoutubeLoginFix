@@ -9,7 +9,7 @@ Additionally adds error logging whenever playback fails for whatever reason to "
 You will need to go to your VR Chat installation, find "launch.exe", right click and go to properties, and under compatiblility set it to run as Administrator from now on, and click apply. For whatever reason this fix fails to function when not running VR Chat as administrator.
 
 **Step 2:** 
-Download the latest version of this tool from this repository under "Releases", extract the zip file anywhere, and run VRChatYoutubeLoginFixWatcher.exe.
+Download the latest version of this tool from this repository under "[Releases](https://github.com/Sebane1/VRChatYoutubeLoginFix/releases)", extract the zip file anywhere, and run VRChatYoutubeLoginFixWatcher.exe.
 Keep it running for as long as VR Chat is running from now on, otherwise the fix will get replaced by VR Chats version of yt-dlp, which will undo the fix.
 
 **Step 3:**
