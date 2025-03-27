@@ -91,6 +91,7 @@ namespace VRChatYoutubeLoginFix {
             processStartInfo.UseShellExecute = false;
             processStartInfo.RedirectStandardOutput = true;
             processStartInfo.RedirectStandardError = true;
+
             try {
                 Process process = new Process();
                 process.StartInfo = processStartInfo;

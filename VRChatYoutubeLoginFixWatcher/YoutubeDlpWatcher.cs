@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Logging;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VRChatYoutubeLoginFixWatcher {
     public class YoutubeDlpWatcher {
         private string _watcherPath;
         private string _argumentInterceptor;
+        private string _phantomJs;
         private string _argumentInterceptorDll;
         private string _cookiesFromBrowserFix;
         private string _cookiesPath;
@@ -20,30 +24,50 @@ namespace VRChatYoutubeLoginFixWatcher {
             // Set up our paths.
             _watcherPath = Path.Combine(LocalLow.GetLocalLow(), "VRChat\\VRChat\\Tools");
             _argumentInterceptor = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "yt-dlp.exe");
+            _phantomJs = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "phantomjs.exe");
             _argumentInterceptorDll = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "yt-dlp.dll");
             _cookiesFromBrowserFix = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "yt-dlp-plugins");
             _cookiesPath = Path.Combine(_watcherPath, "cookies.txt");
             _ytdlp = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "yt-dlp-real.exe");
-
+            UpdateYtDlp();
             // Copy over the data we need for things to function.
             CopyFilesRecursively(_cookiesFromBrowserFix, Path.Combine(_watcherPath, Path.GetFileNameWithoutExtension(_cookiesFromBrowserFix + ".folder")));
-            RefreshData();
 
+            AggressiveCopy(_phantomJs);
+            AggressiveCopy(_argumentInterceptorDll);
+            AggressiveCopy(_ytdlp);
+            RefreshData();
             // Set up the file watcher. We need to replace yt-dlp.exe again if VR Chat puts its own back in.
             _fileWatcher = new FileSystemWatcher(_watcherPath, "yt-dlp.exe");
             _fileWatcher.EnableRaisingEvents = true;
             _fileWatcher.Created += _fileWatcher_Changed;
             _fileWatcher.Changed += _fileWatcher_Changed;
         }
+        void UpdateYtDlp() {
+            ProcessStartInfo processStartInfo = new ProcessStartInfo();
+            processStartInfo.FileName = _ytdlp;
+            processStartInfo.ArgumentList.Add("-U");
+            processStartInfo.UseShellExecute = false;
+            processStartInfo.RedirectStandardOutput = true;
+            processStartInfo.RedirectStandardError = true;
 
+            try {
+                Process process = new Process();
+                process.StartInfo = processStartInfo;
+                process.Start();
+                Console.Write(process.StandardOutput.ReadToEnd());
+                Console.Write(process.StandardError.ReadToEnd());
+                process.WaitForExit();
+            } catch (Exception e) {
+                ;
+            }
+        }
         void RefreshData() {
             // Make sure we aren't already refreshing file data.
             if (!refreshingData) {
                 refreshingData = true;
                 // Copy the needed files.
                 AggressiveCopy(_argumentInterceptor);
-                AggressiveCopy(_argumentInterceptorDll);
-                AggressiveCopy(_ytdlp);
                 refreshingData = false;
             }
         }
@@ -74,6 +98,7 @@ namespace VRChatYoutubeLoginFixWatcher {
         }
         private static void CopyFilesRecursively(string sourcePath, string targetPath) {
             Directory.CreateDirectory(targetPath);
+
             // Now Create all of the directories.
             foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories)) {
                 Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
