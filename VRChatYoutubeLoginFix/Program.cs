@@ -3,6 +3,8 @@ using static VRChatYoutubeLoginFix.Program;
 
 namespace VRChatYoutubeLoginFix {
     internal class Program {
+        private static string _tempDir;
+
         // This code intercepts commands meant for yt-dlp so that we can add cookie login commands to whatever VR Chat is sending.
         static void Main(string[] args) {
             if (args.Length == 0) {
@@ -18,7 +20,10 @@ namespace VRChatYoutubeLoginFix {
             string cookiesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cookies.txt");
             string cacheDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cache");
             string logFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"logs\");
+            _tempDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "temp");
+
             Directory.CreateDirectory(logFolder);
+            Directory.CreateDirectory(_tempDir);
             string logPath = Path.Combine(logFolder, guid.ToString() + "log.txt");
             string log = "";
             // Try getting cookies from all common browsers until one works.
@@ -91,6 +96,9 @@ namespace VRChatYoutubeLoginFix {
             processStartInfo.UseShellExecute = false;
             processStartInfo.RedirectStandardOutput = true;
             processStartInfo.RedirectStandardError = true;
+            processStartInfo.EnvironmentVariables["TEMP"] = _tempDir;
+            processStartInfo.EnvironmentVariables["TMP"] = _tempDir;
+
 
             try {
                 Process process = new Process();

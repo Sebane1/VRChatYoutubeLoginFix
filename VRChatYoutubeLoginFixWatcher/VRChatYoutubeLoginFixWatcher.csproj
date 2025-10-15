@@ -7,7 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <SelfContained>true</SelfContained>
-    <Version>0.0.0.2</Version>
+    <Version>0.0.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
