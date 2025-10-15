@@ -10,7 +10,7 @@ Download the latest version of this tool from this repository under "[Releases](
 Keep it running for as long as VR Chat is running from now on, otherwise the fix will get replaced by VR Chats version of yt-dlp, which will undo the fix.
 
 **Step 2:**
-Get this chrome based extension to export your cookie data from youtube, or an equvalent extension. Make sure its in netscape mode and not json. https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?hl=en
+Get this chrome based extension to export your cookie data from youtube, or an equivalent extension. Make sure its in netscape mode and not json. https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?hl=en
 
 **Step 3:** 
 With youtube open and logged in via an incognito browser tab with a burner youtube account (or one you wont be logging into normally), use the extension and click copy, or save a cookies.txt to "%user%\AppData\LocalLow\VRChat\VRChat\Tools" (copying to clipboard will auto create the cookies.txt file for you).
