@@ -18,4 +18,4 @@ With youtube open and logged in via an incognito browser tab with a burner youtu
 The official [github](https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies) of yt-dlp does warn that overdownloading on an account could lead to account suspension, so potentially use a burner account or be mindful of how many videos are played at once.
 
 **Step 4:** 
-Youtube videos should now work again in VR Chat. If they stop working again, you will need to grab new cookies via step 4.
+Youtube videos should now work again in VR Chat. If they stop working again, you will need to grab new cookies via step 3.
